@@ -8,7 +8,8 @@ module.exports = {
         right: "#6DB154",
         firstBg: "#162238",
         secondBg: "#343959",
-        thirdBg: "#69709A"
+        thirdBg: "#69709A",
+        emphasis: "F8BB83",
       }
     },
   },
