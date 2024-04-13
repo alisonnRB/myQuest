@@ -9,7 +9,8 @@ module.exports = {
         firstBg: "#162238",
         secondBg: "#343959",
         thirdBg: "#69709A",
-        emphasis: "F8BB83",
+        emphasis: "#F8BB83",
+        placeholderWhite: "#FFFFFFBF"
       }
     },
   },
