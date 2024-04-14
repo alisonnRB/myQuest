@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import axios, { AxiosResponse } from 'axios';
 import { environment } from '../../environments/environment';
@@ -18,9 +18,10 @@ export class HeaderComponent {
   Tema: string = '';
   dificuldade: string = 'facil';
   quests: Object = {};
+  @Output() ChangeQuests = new EventEmitter<Object>();
   trys: number = 0;
 
-  async Submit() {
+  private async Submit() {
 
     const headers = {
       'Content-Type': 'application/json',
@@ -44,13 +45,15 @@ export class HeaderComponent {
     }
   }
 
-  private JsonTransforme(text: string) {
+  private JsonTransforme(text: string) : void {
     try {
 
       let strFiltred = text.replace(/json/, '');
       const RespostInJson = JSON.parse(strFiltred);
       this.quests = RespostInJson;
       this.trys = 0;
+
+      this.ChangeQuests.emit(this.quests);
 
       console.log('certo');
 

@@ -11,9 +11,13 @@ import { BodyComponent } from './body/body.component';
   imports: [
     RouterOutlet,
     HeaderComponent,
-    BodyComponent
+    BodyComponent,
   ]
 })
 export class AppComponent {
-  title = 'projeto';
+  quests : Object = {};
+
+  ChangeQuests($value: Object): void {
+    this.quests = $value;
+  }
 }
