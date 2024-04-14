@@ -3,10 +3,20 @@
 @tailwind utilities;
 
 
-*{
+* {
     outline: none;
     margin: none;
     padding: none;
     border: none;
     color: white;
+    overflow: hidden;
+}
+
+::-webkit-scrollbar {
+    background-color: transparent;
+    width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #343959;
 }
