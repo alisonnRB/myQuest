@@ -13,11 +13,26 @@ import { CommonModule } from '@angular/common';
 export class CardQuestComponent {
   @Input() quest: any = {};
   @Input() index: number = 0;
+  public done : boolean = false;
+  public right: boolean = false;
   public letras: any = {
     '1': 'A',
     '2': 'B',
     '3': 'C',
     '4': 'D',
     '5': 'E'
+  }
+
+  public answered(value: any) {
+    if(this.done){
+      return;
+    }
+    
+    this.done = true;
+    if(value !== this.quest.resposta){
+      this.right = false;
+    }else{
+      this.right = true;
+    }
   }
 }
