@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import axios, { AxiosResponse } from 'axios';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +14,7 @@ import axios, { AxiosResponse } from 'axios';
 })
 
 export class HeaderComponent {
+  private apiKey = environment.API_KEY;
   Tema: string = '';
   dificuldade: string = 'facil';
   quests: Object = {};
@@ -35,7 +37,7 @@ export class HeaderComponent {
     };
 
     try {
-      const resposta: AxiosResponse = await axios.post('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyD9o9gxXs1OFiTco7K6_nwYXmARptbdqXg', body, { headers });
+      const resposta: AxiosResponse = await axios.post(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${this.apiKey}`, body, { headers });
       this.JsonTransforme(resposta.data.candidates[0].content.parts[0].text);
     } catch (error) {
       console.error('Erro ao fazer a requisição:', error);
