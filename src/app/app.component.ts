@@ -16,8 +16,13 @@ import { BodyComponent } from './body/body.component';
 })
 export class AppComponent {
   quests : Object = {};
+  load : string = 'none';
 
   ChangeQuests($value: Object): void {
     this.quests = $value;
+  }
+
+  ChangeLoad($value: string): void {
+    this.load = $value;
   }
 }

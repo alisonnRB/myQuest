@@ -1,2 +1,15 @@
-<div class="w-screen h-full overflow-y-auto overflow-x-hidden mt-24 flex flex-col items-center">
+<div class="w-screen overflow-y-auto overflow-x-hidden mt-24 flex flex-col items-center pt-20 pb-20 gap-12">
+
+  <span *ngIf="load == 'in'" class="loader"></span>
+
+  <span *ngIf="load == 'erro'">
+    <p class="text-center text-xl">Não entendemos o que quis dizer!<br>tente novamente ou de um jeito
+      diferente.<br>&#58; &#40;</p>
+  </span>
+
+  <span *ngFor="let quest of quests | keyvalue; let i = index;">
+    <app-card-quest [quest]="quest.value" [index]="i + 1"></app-card-quest>
+  </span>
+
+
 </div>

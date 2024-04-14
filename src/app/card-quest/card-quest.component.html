@@ -1,0 +1,26 @@
+<div class="bg-secondBg w-[60vw] max-w-[60vw] m-auto">
+    <div class="bg-thirdBg min-h-40 ">
+        <p class="pl-2 pt-1">{{index}}</p>
+        <p class="p-8 break-words text-[1.1em] font-semibold text-center">
+            {{quest.questao}}
+        </p>
+    </div>
+
+    <div class="p-6 pb-0 flex flex-col justify-center" *ngFor="let opcao of quest | keyvalue; let i = index;">
+
+        <ng-container *ngIf="opcao.key !== 'questao' && opcao.key !== 'resposta'">
+
+            <span class="flex min-h-[60px] cursor-pointer">
+                <div class="bg-emphasis h-1/1 w-[60px] flex items-center justify-center">
+                    {{ letras[i+1] }}
+                </div>
+                <div class="bg-thirdBg w-full pl-4 flex items-center text-start text-[1.1em] hover:bg-hovered">
+                    <p>{{ opcao.value }}</p>
+                </div>
+            </span>
+
+        </ng-container>
+
+    </div>
+
+</div>

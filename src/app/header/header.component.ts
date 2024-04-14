@@ -18,10 +18,15 @@ export class HeaderComponent {
   Tema: string = '';
   dificuldade: string = 'facil';
   quests: Object = {};
+  load: string = 'none';
+  @Output() ChangeLoad = new EventEmitter<string>();
   @Output() ChangeQuests = new EventEmitter<Object>();
   trys: number = 0;
 
-  private async Submit() {
+  async Submit() {
+
+    this.load = 'in';
+    this.ChangeLoad.emit(this.load);
 
     const headers = {
       'Content-Type': 'application/json',
@@ -52,10 +57,10 @@ export class HeaderComponent {
       const RespostInJson = JSON.parse(strFiltred);
       this.quests = RespostInJson;
       this.trys = 0;
+      this.load = 'none';
 
+      this.ChangeLoad.emit(this.load);
       this.ChangeQuests.emit(this.quests);
-
-      console.log('certo');
 
     } catch (e) {
 
@@ -63,7 +68,8 @@ export class HeaderComponent {
         this.trys = this.trys + 1;
         this.Submit();
       } else {
-        console.log('erro');
+        this.load = 'erro';
+        this.ChangeLoad.emit(this.load);
       }
 
     }
