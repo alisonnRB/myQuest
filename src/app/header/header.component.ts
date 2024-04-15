@@ -31,9 +31,8 @@ export class HeaderComponent {
   constructor(private persistense: Persistence, private scrollTopService: ScrollTopService) { }
 
   async Submit() {
-    console.log('key : ' + environment.API_KEY);
     if (this.load == 'in') {
-      return
+      return;
     }
 
     this.load = 'in';
@@ -74,8 +73,6 @@ export class HeaderComponent {
       this.ChangeQuests.emit(this.quests);
 
       this.persistense.persiste(this.Tema, this.dificuldade, this.quests);
-
-      console.log(text);
 
     } catch (e) {
 
