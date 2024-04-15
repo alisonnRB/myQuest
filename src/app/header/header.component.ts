@@ -5,13 +5,14 @@ import Persistence from '../service/Persistence';
 import { ScrollTopService } from '../service/scroll.service';
 
 
-declare global {
-  interface Window {
-    _env_: {
-      API_KEY: string;
-    };
-  }
+interface CustomWindow extends Window {
+  _env_: {
+    API_KEY: string;
+    // outras variáveis de ambiente que você tenha
+  };
 }
+
+declare let window: CustomWindow;
 
 @Component({
   selector: 'app-header',
@@ -25,7 +26,6 @@ declare global {
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-
 export class HeaderComponent {
   private apiKey = window && window._env_ && window._env_.API_KEY;
   Tema: string = '';
@@ -36,11 +36,11 @@ export class HeaderComponent {
   @Output() ChangeQuests = new EventEmitter<Object>();
   trys: number = 0;
 
-  constructor(private persistense: Persistence, private scrollTopService: ScrollTopService) { }
+  constructor(private persistence: Persistence, private scrollTopService: ScrollTopService) { }
 
   async Submit() {
     if (this.load == 'in') {
-      return
+      return;
     }
 
     this.load = 'in';
@@ -70,7 +70,6 @@ export class HeaderComponent {
 
   private JsonTransforme(text: string): void {
     try {
-
       let strFiltred = text.replace(/json/, '');
       const RespostInJson = JSON.parse(strFiltred);
       this.quests = RespostInJson;
@@ -80,7 +79,7 @@ export class HeaderComponent {
       this.ChangeLoad.emit(this.load);
       this.ChangeQuests.emit(this.quests);
 
-      this.persistense.persiste(this.Tema, this.dificuldade, this.quests);
+      this.persistence.persiste(this.Tema, this.dificuldade, this.quests);
 
       console.log(text);
 
@@ -96,11 +95,10 @@ export class HeaderComponent {
       }
 
     }
-
   }
 
   ngOnInit() {
-    const data: any = this.persistense.getPersistence();
+    const data: any = this.persistence.getPersistence();
     if (data) {
       this.Tema = data.Tema;
       this.dificuldade = data.dificuldade;
