@@ -11,10 +11,18 @@
         <ng-container *ngFor="let opcao of quest | keyvalue; let i = index;">
             <ng-container *ngIf="opcao.key !== 'questao' && opcao.key !== 'resposta'">
 
-                <span (click)="answered(opcao.value)" class="flex min-h-[60px] cursor-pointer shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
-                    <div
-                        class="bg-emphasis h-1/1 w-[60px] flex items-center justify-center relative shadow-[4px_4px_4px_rgba(0,0,0,0.25)] font-bold">
-                        {{ letras[i+1] }}
+                <span (click)="answered(opcao.value, i)"
+                    [ngClass]="{
+                        'cursor-default': done,
+                    }"
+                    class="flex min-h-[60px] cursor-pointer shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
+                    <div [ngClass]="{
+                        'bg-emphasis': !done || done,
+                        'bg-error': done && !right && answer === i,
+                        'bg-right': done && opcao.value == quest.resposta,
+                      }"
+                        class="h-1/1 w-[60px] flex items-center justify-center relative shadow-[4px_4px_4px_rgba(0,0,0,0.25)] font-bold">
+                        {{ !done ? letras[i+1] : (done && answer === i && right ? 'V' : (done && answer === i && !right ? 'X' : (opcao.value === quest.resposta? 'V' : letras[i+1]))) }}
                     </div>
                     <div
                         class="bg-thirdBg w-full pl-4 flex items-center text-start text-[1.1em] hover:bg-hovered shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">

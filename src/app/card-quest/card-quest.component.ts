@@ -15,6 +15,7 @@ export class CardQuestComponent {
   @Input() index: number = 0;
   public done : boolean = false;
   public right: boolean = false;
+  public answer: number = 0;
   public letras: any = {
     '1': 'A',
     '2': 'B',
@@ -23,12 +24,13 @@ export class CardQuestComponent {
     '5': 'E'
   }
 
-  public answered(value: any) {
+  public answered(value: any, index: number) {
     if(this.done){
       return;
     }
     
     this.done = true;
+    this.answer = index;
     if(value !== this.quest.resposta){
       this.right = false;
     }else{
