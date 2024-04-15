@@ -2,7 +2,8 @@ import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import axios, { AxiosResponse } from 'axios';
 import { environment } from '../../environments/environment';
-import Persistence from '../dataPersistence/Persistence';
+import Persistence from '../service/Persistence';
+import { ScrollTopService } from '../service/scroll.service';
 
 @Component({
   selector: 'app-header',
@@ -27,10 +28,10 @@ export class HeaderComponent {
   @Output() ChangeQuests = new EventEmitter<Object>();
   trys: number = 0;
 
-  constructor(private persistense: Persistence){}
+  constructor(private persistense: Persistence, private scrollTopService: ScrollTopService) { }
 
   async Submit() {
-    if(this.load == 'in'){
+    if (this.load == 'in') {
       return
     }
 
@@ -59,7 +60,7 @@ export class HeaderComponent {
     }
   }
 
-  private JsonTransforme(text: string) : void {
+  private JsonTransforme(text: string): void {
     try {
 
       let strFiltred = text.replace(/json/, '');
@@ -88,13 +89,16 @@ export class HeaderComponent {
 
   }
 
-  ngOnInit(){
+  ngOnInit() {
     const data: any = this.persistense.getPersistence();
-    if(data){
+    if (data) {
       this.Tema = data.Tema;
       this.dificuldade = data.dificuldade;
       this.quests = data.quests;
     }
   }
-  
+
+  toTop() {
+    this.scrollTopService.scrollToTop();
+  }
 }

@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { CardQuestComponent } from '../card-quest/card-quest.component';
-import Persistence from '../dataPersistence/Persistence';
+import Persistence from '../service/Persistence';
+import { ScrollTopService } from '../service/scroll.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-body',
@@ -19,8 +21,20 @@ import Persistence from '../dataPersistence/Persistence';
 export class BodyComponent{
   @Input() quests: Object = {};
   @Input() load: string = 'none';
+  private subscription: Subscription;
 
-  constructor(private persistence : Persistence){}
+  constructor(private persistence : Persistence, private scrollTopService : ScrollTopService){
+    this.subscription = this.scrollTopService.scrollEvent$.subscribe(() => {
+      this.scrollToTop();
+    });
+  }
+
+  scrollToTop() {
+    const divElement = document.getElementById('roll');
+    if (divElement) {
+      divElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 
   ngOnInit(){
     const Data: any = this.persistence.getPersistence();

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import Persistence from '../dataPersistence/Persistence';
+import Persistence from '../service/Persistence';
 
 @Component({
   selector: 'app-card-quest',
