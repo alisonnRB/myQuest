@@ -15,6 +15,13 @@ import { CardQuestComponent } from '../card-quest/card-quest.component';
 export class BodyComponent implements OnChanges {
   @Input() quests: Object = {};
   @Input() load: string = 'none';
+  teste: any = {
+    questao: 'oioioioiioi',
+    opcao1: 'mlmkmmmkmkn',
+    opcao2: 'mdfodkfodk',
+    opcao3: 'kmkmskamsk',
+    resposta: 'mlmkmmmkmkn'
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['quests'] && !changes['quests'].firstChange) {
