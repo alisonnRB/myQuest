@@ -63,7 +63,6 @@ export class HeaderComponent {
     try {
 
       const RespostInJson = JSON.parse(text);
-      console.log(text);
       this.quests = RespostInJson;
       this.load = 'none';
 
@@ -74,8 +73,6 @@ export class HeaderComponent {
 
     } catch (e) {
 
-      console.log(e)
-      console.log(text)
       this.load = 'erro';
       this.ChangeLoad.emit(this.load);
 
