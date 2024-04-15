@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Persistence from '../service/Persistence';
 
@@ -17,6 +17,7 @@ import Persistence from '../service/Persistence';
 export class CardQuestComponent {
   @Input() quest: any = {};
   @Input() index: number = 0;
+  @Output() Respondido = new EventEmitter<void>();
   public done : boolean = false;
   public right: boolean = false;
   public answer: number = 0;
@@ -54,6 +55,7 @@ export class CardQuestComponent {
 
   persistir(): void{
     this.persistence.answerPersistece(this.index, this.done, this.right, this.answer);
+    this.Respondido.emit();
   }
 
 

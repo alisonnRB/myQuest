@@ -4,13 +4,15 @@ import { CardQuestComponent } from '../card-quest/card-quest.component';
 import Persistence from '../service/Persistence';
 import { ScrollTopService } from '../service/scroll.service';
 import { Subscription } from 'rxjs';
+import { AtalhoComponent } from '../atalho/atalho.component';
 
 @Component({
   selector: 'app-body',
   standalone: true,
   imports: [
     CommonModule,
-    CardQuestComponent
+    CardQuestComponent,
+    AtalhoComponent,
   ],
   providers: [
     Persistence,

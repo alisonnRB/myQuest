@@ -12,8 +12,14 @@
   </span>
 
   <span *ngFor="let quest of quests | keyvalue; let i = index;">
-    <app-card-quest [quest]="quest.value" [index]="i + 1"></app-card-quest>
+    <app-card-quest [quest]="quest.value" [index]="i + 1" (Respondido)="ngOnInit()"></app-card-quest>
   </span>
 
+  <span class="block fixed top-28 left-4">
+    <div *ngFor="let quest of quests | keyvalue; let i = index;"
+      class="w-[40px] flex flex-col">
+      <app-atalho [quest]="quest.value" [index]="i + 1"></app-atalho>
+    </div>
+  </span>
 
 </div>
