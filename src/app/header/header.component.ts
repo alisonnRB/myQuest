@@ -26,7 +26,6 @@ export class HeaderComponent {
   load: string = 'none';
   @Output() ChangeLoad = new EventEmitter<string>();
   @Output() ChangeQuests = new EventEmitter<Object>();
-  trys: number = 0;
 
   constructor(private persistense: Persistence, private scrollTopService: ScrollTopService) { }
 
@@ -46,7 +45,7 @@ export class HeaderComponent {
       "contents": [
         {
           "parts": [
-            { "text": `Escreva 8 perguntas de múltipla escolha sobre o tema ${this.Tema} com nível de dificuldade ${this.dificuldade} tendo sempre 4 opções cada pergunta e dizendo a resposta, mas estruture como um JSON. Exemplo de saída: 'pergunta1': {'questao': 'pergunta', 'opcao1': 'valor1', 'opcao2': 'valor2', 'opcao3': 'valor3','opcao4': 'valor4', 'resposta': 'valor2'}` }
+            { "text": `Escreva 8 perguntas de múltipla escolha sobre o tema ${this.Tema} com nível de dificuldade ${this.dificuldade} tendo sempre 4 opções cada pergunta e dizendo a resposta, mas estruture como um JSON sem absolutamente mais nada. Exemplos de saída: 'pergunta1': {'questao': 'qual dos seguintes é uma ave','opcao1': 'gato', 'opcao2': 'cachorro', 'opcao3': 'pinguin', 'opcao4': 'guaxinin', 'resposta': 'pinguin'}` }
           ]
         }
       ]
@@ -63,10 +62,9 @@ export class HeaderComponent {
   private JsonTransforme(text: string): void {
     try {
 
-      let strFiltred = text.replace(/json/, '');
-      const RespostInJson = JSON.parse(strFiltred);
+      const RespostInJson = JSON.parse(text);
+      console.log(text);
       this.quests = RespostInJson;
-      this.trys = 0;
       this.load = 'none';
 
       this.ChangeLoad.emit(this.load);
@@ -76,14 +74,11 @@ export class HeaderComponent {
 
     } catch (e) {
 
-      if (this.trys < 2) {
-        this.trys = this.trys + 1;
-        this.load = 'fail';
-        this.Submit();
-      } else {
-        this.load = 'erro';
-        this.ChangeLoad.emit(this.load);
-      }
+      console.log(e)
+      console.log(text)
+      this.load = 'erro';
+      this.ChangeLoad.emit(this.load);
+
 
     }
 
