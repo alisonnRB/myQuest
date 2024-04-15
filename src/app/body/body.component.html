@@ -17,7 +17,7 @@
     </span>
   </span>
 
-  <span class="block fixed top-28 left-4" *ngIf="load != 'erro' && load != 'in'">
+  <span class="block fixed top-28 left-4 max-md:hidden" *ngIf="load != 'erro' && load != 'in'">
     <div *ngFor="let quest of quests | keyvalue; let i = index;" class="w-[40px] flex flex-col">
       <app-atalho [quest]="quest.value" [index]="i + 1"></app-atalho>
     </div>

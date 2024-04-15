@@ -1,4 +1,4 @@
-<header class="w-screen bg-secondBg flex flex-row justify-between items-center h-24 pl-7 pr-7 shadow-[0px_4px_5px_rgba(0,0,0,0.25)] fixed z-50">
+<header class="w-screen bg-secondBg flex flex-row justify-between items-center h-24 pl-7 pr-7 max-sm:pl-3 max-sm:pr-3 shadow-[0px_4px_5px_rgba(0,0,0,0.25)] fixed z-50">
     <span>
         <label for="dificuldade">Dificuldade: </label>
         <select [(ngModel)]="dificuldade" name="dificuldade" id="dificuldade" class="bg-transparent pl-1 pr-1">
@@ -8,7 +8,7 @@
         </select>
     </span>
 
-    <img src="../../assets/logo.png" alt="logo" class="h-16 relative left-12 top-1s">
+    <img src="../../assets/logo.png" alt="logo" class="h-16 relative left-12 top-1s max-md:hidden">
 
 
     <span class="flex flex-row h-9">
