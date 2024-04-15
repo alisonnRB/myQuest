@@ -1,9 +1,17 @@
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import axios, { AxiosResponse } from 'axios';
-import { environment } from '../../environments/environment';
 import Persistence from '../service/Persistence';
 import { ScrollTopService } from '../service/scroll.service';
+
+
+declare global {
+  interface Window {
+    _env_: {
+      API_KEY: string;
+    };
+  }
+}
 
 @Component({
   selector: 'app-header',
@@ -19,7 +27,7 @@ import { ScrollTopService } from '../service/scroll.service';
 })
 
 export class HeaderComponent {
-  private apiKey = environment.API_KEY;
+  private apiKey = window && window._env_ && window._env_.API_KEY;
   Tema: string = '';
   dificuldade: string = 'facil';
   quests: Object = {};
