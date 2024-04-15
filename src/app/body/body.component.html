@@ -1,8 +1,10 @@
-<div class="w-[100vw] overflow-y-auto overflow-x-hidden mt-24 block pt-20 pb-20 gap-12">
+<div class="w-[100vw] overflow-y-auto overflow-x-hidden mt-24 block pt-20 pb-20">
 
-  <span *ngIf="load == 'in'" class="loader"></span>
+  <span *ngIf="load == 'in'" class="w-[100vw] h-[48px] flex items-center justify-center mb-12">
+    <span class="loader"></span>
+  </span>
 
-  <span *ngIf="load == 'erro'">
+  <span *ngIf="load == 'erro'" class="mb-12">
     <p class="text-center text-xl">Não entendemos o que quis dizer!<br>tente novamente ou de um jeito
       diferente.<br>&#58; &#40;</p>
   </span>
