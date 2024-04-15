@@ -26,15 +26,28 @@ export class BodyComponent{
   private subscription: Subscription;
 
   constructor(private persistence : Persistence, private scrollTopService : ScrollTopService){
-    this.subscription = this.scrollTopService.scrollEvent$.subscribe(() => {
-      this.scrollToTop();
-    });
+    this.subscription = this.scrollTopService.scrollEvent$.subscribe((index: number) => {
+      this.scrollToComponente(index);
+    });    
   }
 
   scrollToTop() {
     const divElement = document.getElementById('roll');
     if (divElement) {
-      divElement.scrollIntoView({ behavior: 'smooth' });
+      divElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  scrollToComponente(index: number) {
+    if (index === 0) {
+      this.scrollToTop();
+      return;
+    }
+    
+    const divId = `comp-${index}`;
+    const divElement = document.getElementById(divId);
+    if (divElement) {
+      divElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 

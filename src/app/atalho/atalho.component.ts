@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ScrollTopService } from '../service/scroll.service';
 
 @Component({
   selector: 'app-atalho',
@@ -13,4 +14,10 @@ import { CommonModule } from '@angular/common';
 export class AtalhoComponent {
   @Input() quest : any = {};
   @Input() index : number = 1;
+
+  constructor(private scrollTopService: ScrollTopService) { }
+
+  toDiv() {
+    this.scrollTopService.scrollToComponent(this.index);
+  }
 }

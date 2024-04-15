@@ -5,11 +5,15 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class ScrollTopService {
-  private scrollEvent = new Subject<void>();
+  private scrollEvent = new Subject<number>();
 
   scrollEvent$ = this.scrollEvent.asObservable();
 
   scrollToTop() {
-    this.scrollEvent.next();
+    this.scrollEvent.next(0);
+  }
+
+  scrollToComponent(index: number) {
+    this.scrollEvent.next(index);
   }
 }

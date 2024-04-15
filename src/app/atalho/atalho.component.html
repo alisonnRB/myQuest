@@ -1,8 +1,9 @@
 <div [ngClass]="{
-    'bg-emphasis': !quest.zDone || quest.zDone || quest,
-    'bg-error': !quest.zRight && quest.zDone,
-    'bg-right': quest.zRight && quest.zDone,
+    'bg-emphasis': !quest.zDone || quest.zDone && !quest.zRight,
+    'bg-error': quest.zDone && !quest.zRight,
+    'bg-right': quest.zDone && quest.zRight,
 }"
+(click)="toDiv()"
 class="w-[30px] h-[30px] mb-2 bg-emphasis cursor-pointer flex justify-center items-center font-bold">
     {{index}}
 </div>
