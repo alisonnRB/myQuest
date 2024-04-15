@@ -1,13 +1,17 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import axios, { AxiosResponse } from 'axios';
 import { environment } from '../../environments/environment';
+import Persistence from '../dataPersistence/Persistence';
 
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [
     FormsModule,
+  ],
+  providers: [
+    Persistence,
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
@@ -23,7 +27,12 @@ export class HeaderComponent {
   @Output() ChangeQuests = new EventEmitter<Object>();
   trys: number = 0;
 
+  constructor(private persistense: Persistence){}
+
   async Submit() {
+    if(this.load == 'in'){
+      return
+    }
 
     this.load = 'in';
     this.ChangeLoad.emit(this.load);
@@ -62,10 +71,13 @@ export class HeaderComponent {
       this.ChangeLoad.emit(this.load);
       this.ChangeQuests.emit(this.quests);
 
+      this.persistense.persiste(this.Tema, this.dificuldade, this.quests);
+
     } catch (e) {
 
       if (this.trys < 2) {
         this.trys = this.trys + 1;
+        this.load = 'fail';
         this.Submit();
       } else {
         this.load = 'erro';
@@ -74,6 +86,15 @@ export class HeaderComponent {
 
     }
 
+  }
+
+  ngOnInit(){
+    const data: any = this.persistense.getPersistence();
+    if(data){
+      this.Tema = data.Tema;
+      this.dificuldade = data.dificuldade;
+      this.quests = data.quests;
+    }
   }
   
 }

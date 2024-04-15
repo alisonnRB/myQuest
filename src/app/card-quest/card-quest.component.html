@@ -9,7 +9,7 @@
     <div class="p-7 flex flex-col justify-center gap-6">
 
         <ng-container *ngFor="let opcao of quest | keyvalue; let i = index;">
-            <ng-container *ngIf="opcao.key !== 'questao' && opcao.key !== 'resposta'">
+            <ng-container *ngIf="opcao.key !== 'questao' && opcao.key !== 'resposta' && opcao.key !== 'zDone' && opcao.key !== 'zRight' && opcao.key !== 'zAnswer'">
 
                 <span (click)="answered(opcao.value, i)"
                     [ngClass]="{

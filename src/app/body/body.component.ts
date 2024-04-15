@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { CardQuestComponent } from '../card-quest/card-quest.component';
+import Persistence from '../dataPersistence/Persistence';
 
 @Component({
   selector: 'app-body',
@@ -9,27 +10,22 @@ import { CardQuestComponent } from '../card-quest/card-quest.component';
     CommonModule,
     CardQuestComponent
   ],
+  providers: [
+    Persistence,
+  ],
   templateUrl: './body.component.html',
   styleUrl: './body.component.css'
 })
-export class BodyComponent implements OnChanges {
+export class BodyComponent{
   @Input() quests: Object = {};
   @Input() load: string = 'none';
-  teste: any = {
-    questao: 'oioioioiioi',
-    opcao1: 'mlmkmmmkmkn',
-    opcao2: 'mdfodkfodk',
-    opcao3: 'kmkmskamsk',
-    resposta: 'mlmkmmmkmkn'
-  }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['quests'] && !changes['quests'].firstChange) {
-      console.log('A variável childData mudou:', this.quests);
-    }
+  constructor(private persistence : Persistence){}
 
-    if (changes['load'] && !changes['load'].firstChange) {
-      console.log('A variável childData mudou:', this.load);
+  ngOnInit(){
+    const Data: any = this.persistence.getPersistence();
+    if(Data){
+      this.quests = Data.quests;
     }
   }
 }
