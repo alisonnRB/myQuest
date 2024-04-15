@@ -47,7 +47,7 @@ export class HeaderComponent {
       "contents": [
         {
           "parts": [
-            { "text": `Escreva 8 perguntas de múltipla escolha sobre o tema ${this.Tema} com nível de dificuldade ${this.dificuldade} tendo sempre 4 opções cada pergunta e dizendo a resposta, mas estruture como um JSON. Exemplo de saída: 'pergunta1': {'questao': 'pergunta', 'opcao1': 'opcao', 'opcao2': 'opcao', 'opcao3': 'opcao','opcao4': 'opcao', 'resposta': 'opcao'}` }
+            { "text": `Escreva 8 perguntas de múltipla escolha sobre o tema ${this.Tema} com nível de dificuldade ${this.dificuldade} tendo sempre 4 opções cada pergunta e dizendo a resposta, mas estruture como um JSON. Exemplo de saída: 'pergunta1': {'questao': 'pergunta', 'opcao1': 'valor1', 'opcao2': 'valor2', 'opcao3': 'valor3','opcao4': 'valor4', 'resposta': 'valor2'}` }
           ]
         }
       ]
