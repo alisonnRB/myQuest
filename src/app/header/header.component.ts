@@ -31,6 +31,7 @@ export class HeaderComponent {
   constructor(private persistense: Persistence, private scrollTopService: ScrollTopService) { }
 
   async Submit() {
+    console.log('key : ' + environment.API_KEY);
     if (this.load == 'in') {
       return
     }
