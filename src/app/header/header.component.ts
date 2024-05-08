@@ -22,7 +22,7 @@ import { verify } from 'node:crypto';
 export class HeaderComponent {
   private apiKey: string | undefined = environment.API_KEY;
   Tema: string = '';
-  dificuldade: string = 'facil';
+  dificuldade: string = 'fácil';
   quests: Object = {};
   load: string = 'none';
   @Output() ChangeLoad = new EventEmitter<string>();
