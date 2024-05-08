@@ -58,6 +58,7 @@ export class HeaderComponent {
       this.JsonTransforme(resposta.data.candidates[0].content.parts[0].text);
     } catch (error) {
       console.error('Erro ao fazer a requisição:', error);
+      this.AlternativeSubmit();
     }
   }
 
@@ -108,7 +109,7 @@ export class HeaderComponent {
         this.ChangeLoad.emit(this.load);
         this.try = false;
         return;
-        
+
       } else {
         this.try = true;
         this.AlternativeSubmit();
